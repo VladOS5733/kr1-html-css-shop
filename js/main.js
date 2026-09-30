@@ -72,3 +72,26 @@ orderForm.addEventListener('submit', (event) => {
   // Закрываем модальное окно.
   orderDialog.close();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('scroll-to-top');
+
+  if (!btn) return;
+
+  // Показываем кнопку, когда прокрутили больше 300px
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+
+  // Плавный скролл наверх по клику
+  btn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
