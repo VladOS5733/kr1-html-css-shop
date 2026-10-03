@@ -6,26 +6,24 @@
   <title>Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
+  <script src="js/catalog.js" defer></script>
 </head>
 <body>
 
-<header>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+<header class="site-header">
+   <div class="site-header__inner">
+    <a class="site-header__logo" href="index.html">ShopProject</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item">
-            <a class="site-nav__link site-nav__link--active" href="index.html">Главная</a>
-          </li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <ul class="site-nav__list">
+        <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
   
   <main>
 
@@ -54,28 +52,30 @@
   <h2>Популярные товары</h2>
 
   <div class="products-grid">
-    <article class="product-card">
-      <h3>Товар 1</h3>
-      <p>Краткое описание учебного товара.</p>
-      <p>Цена: 1000 руб.</p>
+    <article class="product-card product-card--featured">
+      <h3 class="product-card__title">Товар 1</h3>
+      <p class="product-card__description">Краткое описание учебного товара.</p>
+      <p class="product-card__price">Цена: 1000 руб.</p>
       <button class="button product-card__button" type="button" data-product="Товар 1">
         Заказать
       </button>
     </article>
 
-    <article class="product-card">
-      <h3>Товар 2</h3>
-      <p>Краткое описание учебного товара.</p>
-      <p>Цена: 1500 руб.</p>
+
+    <article class="product-card product-card--featured">
+      <h3 class="product-card__title">Товар 2</h3>
+      <p class="product-card__description">Краткое описание учебного товара.</p>
+      <p class="product-card__price">Цена: 1500 руб.</p>
       <button class="button product-card__button" type="button" data-product="Товар 2">
         Заказать
       </button>
     </article>
 
-    <article class="product-card">
-      <h3>Товар 3</h3>
-      <p>Краткое описание учебного товара.</p>
-      <p>Цена: 2000 руб.</p>
+
+    <article class="product-card product-card--featured">
+      <h3 class="product-card__title">Товар 3</h3>
+      <p class="product-card__description">Краткое описание учебного товара.</p>
+      <p class="product-card__price">Цена: 2000 руб.</p>
       <button class="button product-card__button" type="button" data-product="Товар 3">
         Заказать
       </button>
@@ -100,7 +100,7 @@
 </footer>
 
 <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-  <h2 id="order-dialog-title">Оформление заявки</h2>
+  <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
 
   <form class="order-form" id="order-form" action="#" method="post" novalidate>
     <input id="selected-product" name="selected-product" type="hidden">
@@ -108,6 +108,7 @@
     <div class="form-field">
       <label for="order-name">Имя</label>
       <input
+        class="order-form_input"
         id="order-name"
         name="name"
         type="text"
@@ -121,6 +122,7 @@
     <div class="form-field">
       <label for="order-email">E-mail</label>
       <input
+        class="order-form_input"
         id="order-email"
         name="email"
         type="email"
@@ -133,6 +135,7 @@
     <div class="form-field">
       <label for="order-phone">Телефон</label>
       <input
+        class="order-form_input"
         id="order-phone"
         name="phone"
         type="tel"
@@ -147,6 +150,7 @@
     <div class="form-field">
       <label for="order-date">Дата связи</label>
       <input
+        class="order-form_input"
         id="order-date"
         name="date"
         type="date"
@@ -185,9 +189,13 @@
       </label>
     </div>
 
-    <div class="form-actions">
-      <button type="button" id="close-order-dialog">Закрыть</button>
-      <button type="submit">Отправить заявку</button>
+    <div class="order-form-actions">
+      <button class="button button--primary" type="submit">
+        Отправить заявку
+      </button>
+      <button class="button button--secondary" type="button">
+        Закрыть
+      </button>
     </div>
   </form>
 </dialog>
