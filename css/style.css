@@ -81,6 +81,10 @@ a:focus-visible {
 }
 
 .site-header {
+  position: sticky;   
+  top: 0;
+  z-index: 100;       
+  width: 100%;
   background-color: var(--color-surface);
 }
 
@@ -126,7 +130,7 @@ a:focus-visible {
 }
 
 .site-nav__link--active {
-  color: var(--color-white);
+  color: var(--color-bg);
   background-color: var(--color-primary);
 }
 
@@ -185,14 +189,28 @@ a:focus-visible {
   margin-top: 0;
 }
 
+/* ===============================
+   4. Компоненты страницы 
+   =============================== */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  justify-items: center;
+}
+
 .product-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  width: 100%;
+  max-width: 350px;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-bg);
+  box-sizing: border-box;
 }
 
 .product-card:hover {
@@ -234,17 +252,31 @@ a:focus-visible {
 .button {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  text-decoration: none;
   border: none;
   border-radius: var(--radius-sm);
+  font: inherit;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.button:hover {
+.button--primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.button--primary:hover {
   background-color: var(--color-primary-dark);
-  color: #ffffff;
+}
+
+.button--secondary {
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+}
+
+.button--secondary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 .button:focus-visible {
@@ -252,7 +284,8 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-.button:disabled {
+.button:disabled,
+.button--disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -269,6 +302,44 @@ a:focus-visible {
    5. Форма и модальное окно
    =============================== */
 
+.order-form__field {
+  margin-bottom: var(--space-md);
+}
+
+.order-form__label {
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.order-form__input,
+.order-form__select,
+.order-form__textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+.order-form__input:hover,
+.order-form__select:hover,
+.order-form__textarea:hover {
+  border-color: var(--color-primary);
+}
+
+.order-form__input:focus-visible,
+.order-form__select:focus-visible,
+.order-form__textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.order-form__actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
 .order-dialog {
   width: min(100% - 32px, 560px);
   padding: var(--space-lg);
@@ -280,47 +351,8 @@ a:focus-visible {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.form-field {
-  margin-bottom: var(--space-md);
-}
-
-.form-field label {
-  display: block;
-  margin-bottom: var(--space-xs);
-}
-
-.form-field input,
-.form-field select,
-.form-field textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font: inherit;
-}
-
-.form-field input[type="checkbox"] {
-  width: auto;
-}
-
-.form-field small {
-  display: block;
-  margin-top: var(--space-xs);
-  color: var(--color-muted);
-}
-
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
-  border-color: var(--color-primary);
-}
-
-.form-field input:focus-visible,
-.form-field select:focus-visible,
-.form-field textarea:focus-visible,
-.form-actions button:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
+.order-dialog__title {
+  margin-top: 0;
 }
 
 [aria-invalid="true"] {
@@ -360,28 +392,26 @@ html {
   outline-offset: 4px;
 }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
-}
-
 .catalog-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: var(--space-lg);
-    align-items: start;
-    margin-bottom: var(--space-xl);
-    margin-top: var(--space-md);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
 }
 
-.catalog-filter {
-    position: sticky;
-    top: var(--space-md);
-    background-color: var(--color-surface);
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
+.catalog-filters {
+  position: sticky;
+  top: var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.catalog-products {
+  width: 100%;
 }
 
 .catalog-grid {
@@ -396,10 +426,6 @@ html {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-surface);
-}
-
-.catalog-products {
-  grid-area: products;
 }
 
 .filters-form {
